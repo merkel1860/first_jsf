@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Registration</title>
+</h:head>
+<h:body>
+		<h:form id="userDetailsForm">
+			<p:panel header="User Details Form" style="width: 800px;"> 
+				<p:messages />
+				<h:panelGrid columns="3" >
+					<p:outputLabel value="UserId:*"/>
+					<p:inputText id="userId" value="#{userController.loginUser.id}"
+					required="true" label="UserId" />
+					<p:message id="userIdMsg" for="userId"/>
+					
+					<p:outputLabel value="UserName:*"/>
+					<p:inputText id="userName" value="#{userController.loginUser.username}"
+					required="true" label="UserName" />
+					<p:message id="userNameMsg" for="userName"/>
+					
+					<p:outputLabel value="Password:*"/>
+					<p:password id="password" value="#{userController.loginUser.password}"
+					required="true" label="Password" >
+					<p:ajax update="userPasswordMsg" event="keyup"/>
+					</p:password>
+					<p:message id="userPasswordMsg" for="password"/>
+					
+					<p:outputLabel value="FirstName:*"/>
+					<p:inputText id="firstName" value="#{userController.loginUser.firstname}"
+					required="true" label="FirstName" />
+					<p:message id="firstNameMsg" for="firstName"/>
+					
+					<p:commandButton value="Update" action="#{userController.updateUser}"
+					 update="userDetailsForm" />
+					 <p:commandButton value="Delete" action="#{userController.deleteUser}"
+					 process="@this,userId" update="userDetailsForm" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+</h:body>
+ 
+</html>
